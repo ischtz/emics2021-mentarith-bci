@@ -1,5 +1,7 @@
 # Analysis functions
 
+import copy
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -409,7 +411,7 @@ def fit_final_models(ds, models):
                 out[data][mn] = {}
 
             mod = models[mn].fit(x_train, y_train)
-            out[data][mn]['model'] = mod
+            out[data][mn]['model'] = copy.deepcopy(mod)
             out[data][mn]['gt'] = y_train
             out[data][mn]['prob'] = mod.predict_proba(x_train)[:,1]
             out[data][mn]['pred'] = mod.predict(x_train)
